@@ -12,12 +12,12 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = [{
-  label: 'Tekst',
-  path: 'ścieżka'
+  label: 'Create Plan',
+  path: '/create-plan'
 },
 {
-  label: 'Tekst',
-path: 'ścieżka'
+  label: 'Ready Plan',
+  path: '/ready-plan'
 }];
 
 function Header() {
@@ -84,7 +84,9 @@ function Header() {
             >
               {pages.map((page, index) => (
                 <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.label}</Typography>
+                  <Typography textAlign="center">
+                  <a href={page.path}> {page.label}</a>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -115,7 +117,7 @@ function Header() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page.label}
+              <a href={page.path}> {page.label}</a>
               </Button>
             ))}
           </Box>
