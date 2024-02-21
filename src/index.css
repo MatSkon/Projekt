@@ -13,3 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.active {
+  color: white;
+  text-decoration: none;
+}
+
+.inactive {
+    color: black;
+    text-decoration: none;
+}
+
