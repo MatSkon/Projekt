@@ -61,14 +61,15 @@ const CreateExercise = (props) => {
         }}
       >
         <TextField
-          label="exercise"
+          label="Exercise"
+          autoComplete="off"
           value={exercise}
           onChange={handleAddExercise}
         />
         {sets.map((set, index) => {
           return <AddSet key={index} set={set} updateSet={updateSet} />;
         })}
-        <IconButton onClick={createSet} aria-label="delete">
+        <IconButton color="primary" onClick={createSet} aria-label="delete">
           <AddIcon />
         </IconButton>
       </Box>

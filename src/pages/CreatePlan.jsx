@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CreateExercise from "./CreateExercise";
+import { useNavigate } from "react-router-dom";
 
 const CreatePlan = () => {
   const [exercises, setExercises] = useState([
@@ -12,6 +13,9 @@ const CreatePlan = () => {
   ]);
 
   const [planName, setPlanName] = useState(null);
+
+
+  const navigate = useNavigate();
 
   const createExercise = () => {
     setExercises([
@@ -36,7 +40,7 @@ const CreatePlan = () => {
 
   const save = async () => {
     console.log(exercises);
-    const response = await fetch("http://localhost:3000/plans", {
+    await fetch("http://localhost:3000/plans", { //przy asynchronicznosci 
       body: JSON.stringify({
         name: planName,
         exercises,
@@ -45,13 +49,15 @@ const CreatePlan = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => console.log(res));
+    }).then(() => navigate('..'));
   };
 
   const handleAddPlanName = (e) => {
     setPlanName(e.target.value);
     console.log(planName);
   };
+
+
 
   return (
     <>
@@ -62,15 +68,16 @@ const CreatePlan = () => {
       >
         <TextField
           label="Plan Name"
+          autoComplete="off"
           value={planName}
           onChange={handleAddPlanName}
         />
         {exercises.map((exercise, index) => {
           return <CreateExercise key={index} updateExercise={updateExercise} id={exercise.id}/>;
         })}
-        <Button onClick={createExercise}>Add exercise</Button>
+        <Button variant='contained' onClick={createExercise}>Add exercise</Button>
       </Box>
-      <Button onClick={save}>Save</Button>
+      <Button variant='contained' onClick={save}>Save</Button>
     </>
   );
 };

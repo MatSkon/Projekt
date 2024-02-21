@@ -29,8 +29,8 @@ const AddSet = (props) => {
   };
 
   useEffect(() => {
-    update()
-  }, [reps, weight])
+    update();
+  }, [reps, weight]);
 
   return (
     <Box
@@ -42,21 +42,26 @@ const AddSet = (props) => {
         padding: "1rem",
       }}
     >
-      <Typography> {set.id} </Typography>
-      <div>
+      <Typography color={"black"} > {set.id} </Typography>
+      <Box sx={{
+        display: 'flex',
+        gap: '5px'
+      }}>
         <TextField
           label="kg"
           type="number"
+          autoComplete="off"
           value={weight}
           onChange={handleChangeWeight}
         />
         <TextField
           label="reps"
           type="number"
+          autoComplete="off"
           value={reps}
           onChange={handleChangeReps}
         />
-      </div>
+      </Box>
     </Box>
   );
 };
